@@ -10,6 +10,9 @@
 - php artisan make:model Post -mcr
 - php artisan make:model Post -a
 - php artisan make:model Post --help
+- php artisan db:seed --class=PostSeeder
+- php artisan db:seed
+- php artisan migrate:fresh --seed
 
 ## Installation
 
