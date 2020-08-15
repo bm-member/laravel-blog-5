@@ -13,6 +13,10 @@
 - php artisan db:seed --class=PostSeeder
 - php artisan db:seed
 - php artisan migrate:fresh --seed
+- php artisan make:middlware AuthWare
+```
+register middleare in app/Http/Kernel.php
+```
 
 ## Installation
 

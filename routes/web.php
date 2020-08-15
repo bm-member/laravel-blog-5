@@ -21,7 +21,7 @@ Route::get('/auth', function() {
     // return auth()->id();
 })->middleware('auth');
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => 'authware'], function() {
     Route::get('post', 'PostController@index');
     Route::get('post/create', 'PostController@create');
     Route::post('post', 'PostController@store');
