@@ -10,3 +10,14 @@
 - php artisan make:model Post -mcr
 - php artisan make:model Post -a
 - php artisan make:model Post --help
+
+## Installation
+
+- git clone https://github.com/bm-member/laravel-blog-5 FOLDER_NAME
+- cd FOLDER_NAME
+- composer install
+- cp .env.example .env
+- php artisan key:generate
+- Setup database
+- php artisan migrate
+- php artisan serve
