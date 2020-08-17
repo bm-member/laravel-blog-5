@@ -9,6 +9,9 @@
       <li class="nav-item active">
         <a class="nav-link" href="{{ url("post/create") }}">Create</a>
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{{ url("logout") }}">Logout</a>
+      </li>
     </ul>
   </div>
 </nav>

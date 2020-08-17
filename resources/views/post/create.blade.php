@@ -7,7 +7,7 @@
         <div class="card">
             <div class="card-header">Create Post</div>
             <div class="card-body">
-                <form action="{{ url("post") }}" method="post">
+                <form action="{{ url("post") }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label>Title</label>
@@ -17,6 +17,10 @@
                                 {{ $message }}
                             </div>
                         @enderror
+                    </div>
+                    <div class="form-group">
+                        <label>Image</label>
+                        <input type="file" name="image" class="form-control-file">
                     </div>
                     <div class="form-group">
                         <label>Title</label>

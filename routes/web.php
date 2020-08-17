@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function() {
-    return 'Hello';
+    $user = App\User::first();
+    return $user->posts;
 });
 
 Route::get('/auth', function() {
@@ -33,5 +34,6 @@ Route::group(['middleware' => 'authware'], function() {
 
 
 Auth::routes();
+Route::get('logout', 'Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index');

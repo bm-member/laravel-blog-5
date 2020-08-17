@@ -6,6 +6,7 @@
         <div class="card">
             <div class="card-body">
                 <h1>{{ $post->title }}</h1>
+                <img src="{{ isset($post->image) ? asset($post->image) : 'https://via.placeholder.com/400x300' }}">
                 <p>{!! $post->content !!}</p>
             </div>
             <div class="card-footer">

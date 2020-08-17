@@ -1,6 +1,7 @@
 <?php
 
 use App\Post;
+use App\User;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 
@@ -19,6 +20,7 @@ class PostSeeder extends Seeder
             $post = new Post;
             $post->title = $faker->text(10);
             $post->content = $faker->text(1000);
+            $post->user_id = User::first()->id;
             $post->save();
         }
     }

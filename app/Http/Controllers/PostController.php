@@ -20,16 +20,40 @@ class PostController extends Controller
 
     public function store(PostRequest $request)
     {
-        $post = new Post();
-        $post->title = $request->title;
-        $post->content = $request->content;
-        $post->save();
+
+        $image = $request->file('image');
+        $imageName = time() . '_' . $image->getClientOriginalName();
+        $path = '/images';
+        $imagePath = public_path($path);
+        $image->move($imagePath, $imageName);
+
+        // Mass Assigment
+        Post::create([
+            'title' => $request->title,
+            'image' => $path . '/' . $imageName,
+            'content' => $request->content,
+        ]);
+
+        // Post::create($request->all());
+
+
+        //=========================//
+        // $post = new Post();
+        // $post->title = $request->title;
+        // $post->content = $request->content;
+        // $post->save();
         return redirect('post')->with('success', 'A post was created successfully.');
     }
 
     public function show($id)
     {
-        $post = Post::find($id);
+        // $post = Post::find($id);
+        // if(! $post) {
+        //     abort(404, 'Ma Shi');
+        // }
+
+        $post = Post::findOrFail($id);
+
         return view('post.show', compact('post'));
     }
 
@@ -41,16 +65,25 @@ class PostController extends Controller
 
     public function update(PostRequest $request, $id)
     {
-        $post = Post::find($id);
-        $post->title = $request->title;
-        $post->content = $request->content;
-        $post->save();
+        // $post = Post::find($id);
+        // $post->update($request->all());
+
+        Post::find($id)->update($request->all());
+
+
+        // $post = Post::find($id);
+        // $post->title = $request->title;
+        // $post->content = $request->content;
+        // $post->save();
         return redirect('post');
     }
 
     public function destroy($id)
     {
         $post = Post::find($id);
+        if($post->image) {
+            unlink(public_path($post->image));
+        }
         $post->delete();
         return redirect('post');
     }
